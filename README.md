@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+As this is my initial project with MERN Stack, I added in comments to help myself understand better.
+This project is a tutorial project from the Youtube video by freeCodeCamp.org (https://youtu.be/7CqJlxBYj-M).
 ## Available Scripts
 
 In the project directory, you can run:

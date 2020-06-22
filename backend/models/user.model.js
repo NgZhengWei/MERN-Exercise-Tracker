@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({ //structure described in this case for MongoDB
-    username: {
+    username: { //validation for the username
         type: String,
         required: true,
         unique: true,
