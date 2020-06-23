@@ -7,10 +7,10 @@ router.route('/').get((req, res) => { //handles get requests at /users url
         .catch(err => res.status(400).json('Error: ' + err)); //if there is an error, will return status 400 with the error
 });
 //these routes are called endpoints
-router.route('add/').post((req, res) => { //handles post requests at /users/add
+router.route('/add').post((req, res) => { //handles post requests at /users/add
     const username = req.body.username; //new username is part of the body
 
-    const newUser = new User({username});
+    const newUser = new User({username})
 
     newUser.save() //save to MongoDB Atlas DB
         .then(() => res.json('User added!')) //if saved, return test of user added
@@ -18,3 +18,5 @@ router.route('add/').post((req, res) => { //handles post requests at /users/add
 });
 
 module.exports = router;  //standard line for router files. Find out more in express docs on routers
+
+//this is the end for this route for for this one it will not have an update and delete. the CRUD.
