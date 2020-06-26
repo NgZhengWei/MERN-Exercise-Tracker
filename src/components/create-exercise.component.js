@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Datepicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"; //styling for datepicker
 
@@ -22,9 +23,14 @@ export default class CreateExercises extends Component { //variavles are never u
     }
 
     componentDidMount(){ //React lifecycle method. This is called right before anything is displayed on page.
-        this.setState({ //hardcoding the users for now. Eventually will come from database
-            users: ['test user'],
-            username: 'test user'
+        axios.get('http://localhost:5000/users/')
+        .then(response => {
+            if (response.data.length > 0) {
+                this.setState({ //basically gets the array of users and calls the .username attribute to add to the users array
+                    users: response.data.map(user => user.username), //data is an array and map allows us to do something to all items in that array
+                    username: response.data[0].username //username is automatically set to the first user in the database
+                })
+            }
         })
     }
 
@@ -63,6 +69,9 @@ export default class CreateExercises extends Component { //variavles are never u
         }
 
         console.log(exercise);
+
+        axios.post('http://localhost:5000/exercises/add', exercise) //sending post request to backend to save user
+        .then(res => console.log(res.data));
 
         window.location = '/'; //takes user back to homepage
 
