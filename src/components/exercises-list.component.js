@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Exercise = props => { //this functional exercise component is used below in exercise list. No state and lifecycle methods.
-    <tr>
+    return(
+        <tr>
         <td>{props.exercise.username}</td>
         <td>{props.exercise.description}</td>
         <td>{props.exercise.duration}</td>
@@ -12,6 +13,7 @@ const Exercise = props => { //this functional exercise component is used below i
             <Link to={"/edit/" + props.exercise._id}>edit</Link> | <a href="#" onClick={() => {props.deleteExercise(props.exercise._id)}}>delete</a>
         </td>
     </tr>
+    )
 }
 
 export default class ExerciseList extends Component {
@@ -24,7 +26,7 @@ export default class ExerciseList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost/5000/exercises/')
+        axios.get('http://localhost:5000/exercises/')
         .then(response => {
             this.setState({ exercises: response.data }) //put all the data from exercises into the exercises array
         })
